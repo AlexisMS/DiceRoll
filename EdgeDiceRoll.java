@@ -19,7 +19,7 @@ class EdgeDiceRoll {
 	EdgeDiceRoll(){}
 
 
-	int[] rollPool(int dboost, int dsetback, int dability, int ddifficulty, int dproficiency, int dchallenge, int dforce){
+	int[] roll(int dboost, int dsetback, int dability, int ddifficulty, int dproficiency, int dchallenge, int dforce){
  		success = 0;
  		failure = 0;
  		advantage = 0;

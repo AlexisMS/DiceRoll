@@ -1,35 +1,93 @@
 import java.util.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 class Main {
 	
 	
 
 	public static void main (String[] args){
-		EdgeDiceRoll edge = new EdgeDiceRoll();
-		int[] roll = new int[6];
-		roll = edge.rollPool(1,1,1,1,1,1,1);
+		JFrame f = new JFrame();
+		JPanel screen = new JPanel();
+		f.setContentPane(screen);
+		screenConfig(screen);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    f.setSize(800,200); //lar x alt
+	    f.setTitle("Star Wars RPG Dice Roller");
+	    f.setVisible(true);
+	    f.setResizable(false);
 
-		if(roll[0]>0)
-			System.out.println("SUCCESS +" + roll[0]);
-		else
-			System.out.println("FAILURE +" + Math.abs(roll[0]));
+	}
 
-		if(roll[1]>0)
-			System.out.println("Advantage +" + roll[1]);
-		else if (roll[1]<0)
-			System.out.println("Threat +" + Math.abs(roll[1]));
+	static void screenConfig (JPanel screen){
+		screen.setLayout(new BorderLayout(5,5));
 
-		if(roll[2]>0)
-			System.out.println("TRIUMPH +" + roll[2]);
+		JPanel showResults = new JPanel();
+		screen.add(showResults,BorderLayout.CENTER);
+		showResults.setLayout(new BoxLayout(showResults,BoxLayout.Y_AXIS));
 
-		if(roll[3]>0)
-			System.out.println("DESPAIR +" + roll[3]);
+		JLabel actionRes = new JLabel();
+		JLabel actionAdv = new JLabel();
+		JLabel actionTri = new JLabel();
+		JLabel actionDes = new JLabel();
+		JLabel actionLig = new JLabel();
+		JLabel actionDar = new JLabel();
+		showResults.add(actionRes);
+		actionRes.setAlignmentX(screen.CENTER_ALIGNMENT);
+		showResults.add(actionAdv);
+		actionAdv.setAlignmentX(screen.CENTER_ALIGNMENT);
+		showResults.add(actionTri);
+		actionTri.setAlignmentX(screen.CENTER_ALIGNMENT);
+		showResults.add(actionDes);
+		actionDes.setAlignmentX(screen.CENTER_ALIGNMENT);
+		showResults.add(actionLig);
+		actionLig.setAlignmentX(screen.CENTER_ALIGNMENT);
+		showResults.add(actionDar);
+		actionDar.setAlignmentX(screen.CENTER_ALIGNMENT);
 
-		if(roll[4]>0)
-			System.out.println("Light-Side Force +" + roll[4]);
+		JPanel poolOptions = new JPanel();
+		Integer[] diceqt = new Integer[] {0,1,2,3,4,5,6,7,8,9};
 
-		if(roll[5]>0)
-			System.out.println("Dark-Side Force +" + roll[5]); 
+		JLabel boostlb = new JLabel("boost:");
+		poolOptions.add(boostlb);
+		JComboBox<Integer> boostqt = new JComboBox<>(diceqt);
+		poolOptions.add(boostqt);
 
+		JLabel setbacklb = new JLabel("setback:");
+		poolOptions.add(setbacklb);
+		JComboBox<Integer> setbackqt = new JComboBox<>(diceqt);
+		poolOptions.add(setbackqt);
+
+		JLabel abilitylb = new JLabel("ability:");
+		poolOptions.add(abilitylb);
+		JComboBox<Integer> abilityqt = new JComboBox<>(diceqt);
+		poolOptions.add(abilityqt);
+
+		JLabel difficultylb = new JLabel("difficulty:");
+		poolOptions.add(difficultylb);
+		JComboBox<Integer> difficultyqt = new JComboBox<>(diceqt);
+		poolOptions.add(difficultyqt);
+
+		JLabel proficiencylb = new JLabel("proficiency:");
+		poolOptions.add(proficiencylb);
+		JComboBox<Integer> proficiencyqt = new JComboBox<>(diceqt);
+		poolOptions.add(proficiencyqt);
+
+		JLabel challengelb = new JLabel("challenge:");
+		poolOptions.add(challengelb);
+		JComboBox<Integer> challengeqt = new JComboBox<>(diceqt);
+		poolOptions.add(challengeqt);
+
+		JLabel forcelb = new JLabel("force:");
+		poolOptions.add(forcelb);
+		JComboBox<Integer> forceqt = new JComboBox<>(diceqt);
+		poolOptions.add(forceqt);
+
+		JButton roll = new JButton("ROLL");
+		roll.addActionListener(new RollAction(screen, showResults, actionRes, actionAdv, actionTri, actionDes, actionLig, actionDar, boostqt, setbackqt, abilityqt, difficultyqt, proficiencyqt, challengeqt, forceqt));
+		poolOptions.add(roll);
+
+		screen.add(poolOptions,BorderLayout.PAGE_START);
 	}
 }
