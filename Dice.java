@@ -10,6 +10,6 @@ class Dice {
 	}
 
 	int roll(){
-		return ThreadLocalRandom.current().nextInt(1, sides-1);
+		return ThreadLocalRandom.current().nextInt(1, sides+1);
 	}
 }
