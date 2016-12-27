@@ -7,7 +7,6 @@ class EdgeDiceRoll {
 	Dice proficiency = new Dice(12);
 	Dice challenge = new Dice(12);
 	Dice force = new Dice(12);
-	int[] result = new int[6];
 	int success = 0;
 	int failure = 0;
 	int advantage = 0;
@@ -20,7 +19,7 @@ class EdgeDiceRoll {
 	EdgeDiceRoll(){}
 
 
-	int rollPool(int dboost, int dsetback, int dability, int dproficiency, int dchallenge, int dforce){
+	int[] rollPool(int dboost, int dsetback, int dability, int ddifficulty, int dproficiency, int dchallenge, int dforce){
  		success = 0;
  		failure = 0;
  		advantage = 0;
@@ -44,6 +43,12 @@ class EdgeDiceRoll {
  				this.rollAbility();
  			}
  		}
+ 		if(ddifficulty>0){
+ 			for(int i=1; i<ddifficulty+1; i++){
+ 				this.rollDifficulty();
+ 			}
+ 		}
+
  		if(dproficiency>0){
  			for(int i=1; i<dproficiency+1; i++){
  				this.rollProficiency();
@@ -59,6 +64,14 @@ class EdgeDiceRoll {
  				this.rollForce();
  			}
  		}
+ 		int[] result = new int[6];
+ 		result[0] = success-failure;
+ 		result[1] = advantage-threat;
+ 		result[2] = triumph;
+ 		result[3] = despair;
+ 		result[4] = light;
+ 		result[5] = dark;
+ 		return result;
 	}
 
 	void rollBoost(){
@@ -224,7 +237,7 @@ class EdgeDiceRoll {
 			case 12:
 				despair++;
 				failure++;
-				break
+				break;
 			default:
 				break;
 		}
@@ -252,7 +265,7 @@ class EdgeDiceRoll {
 			case 11:
 			case 12:
 				light+=2;
-				break
+				break;
 			default:
 				break;
 		}
