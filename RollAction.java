@@ -43,6 +43,13 @@ class RollAction implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e){
+		actionRes.setText(" ");
+		actionAdv.setText(" ");
+		actionTri.setText(" ");
+		actionDes.setText(" ");
+		actionLig.setText(" ");
+		actionDar.setText(" ");
+
 		Integer boost = (Integer)boostqt.getSelectedItem();
 		Integer setback = (Integer)setbackqt.getSelectedItem();
 		Integer ability = (Integer)abilityqt.getSelectedItem();
