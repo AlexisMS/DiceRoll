@@ -13,7 +13,7 @@ class Main {
 		f.setContentPane(screen);
 		screenConfig(screen);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    f.setSize(800,200); //lar x alt
+	    f.setSize(900,200); //lar x alt
 	    f.setTitle("Star Wars RPG Dice Roller");
 	    f.setVisible(true);
 	    f.setResizable(false);
@@ -49,37 +49,51 @@ class Main {
 		JPanel poolOptions = new JPanel();
 		Integer[] diceqt = new Integer[] {0,1,2,3,4,5,6,7,8,9};
 
-		JLabel boostlb = new JLabel("boost:");
+		ImageIcon boostimg = new ImageIcon("img/boost.png");
+		JLabel boostlb = new JLabel("Boost:");
+		boostlb.setIcon(boostimg);
 		poolOptions.add(boostlb);
 		JComboBox<Integer> boostqt = new JComboBox<>(diceqt);
 		poolOptions.add(boostqt);
 
-		JLabel setbacklb = new JLabel("setback:");
+		ImageIcon setbackimg = new ImageIcon("img/setback.png");
+		JLabel setbacklb = new JLabel("Setback:");
+		setbacklb.setIcon(setbackimg);
 		poolOptions.add(setbacklb);
 		JComboBox<Integer> setbackqt = new JComboBox<>(diceqt);
 		poolOptions.add(setbackqt);
 
-		JLabel abilitylb = new JLabel("ability:");
+		ImageIcon abilityimg = new ImageIcon("img/ability.png");
+		JLabel abilitylb = new JLabel("Ability:");
+		abilitylb.setIcon(abilityimg);
 		poolOptions.add(abilitylb);
 		JComboBox<Integer> abilityqt = new JComboBox<>(diceqt);
 		poolOptions.add(abilityqt);
 
-		JLabel difficultylb = new JLabel("difficulty:");
+		ImageIcon difficultyimg = new ImageIcon("img/difficulty.png");
+		JLabel difficultylb = new JLabel("Difficulty:");
+		difficultylb.setIcon(difficultyimg);
 		poolOptions.add(difficultylb);
 		JComboBox<Integer> difficultyqt = new JComboBox<>(diceqt);
 		poolOptions.add(difficultyqt);
 
-		JLabel proficiencylb = new JLabel("proficiency:");
+		ImageIcon proficiencyimg = new ImageIcon("img/proficiency.png");
+		JLabel proficiencylb = new JLabel("Proficiency:");
+		proficiencylb.setIcon(proficiencyimg);
 		poolOptions.add(proficiencylb);
 		JComboBox<Integer> proficiencyqt = new JComboBox<>(diceqt);
 		poolOptions.add(proficiencyqt);
 
-		JLabel challengelb = new JLabel("challenge:");
+		ImageIcon challengeimg = new ImageIcon("img/challenge.png");
+		JLabel challengelb = new JLabel("Challenge:");
+		challengelb.setIcon(challengeimg);
 		poolOptions.add(challengelb);
 		JComboBox<Integer> challengeqt = new JComboBox<>(diceqt);
 		poolOptions.add(challengeqt);
 
-		JLabel forcelb = new JLabel("force:");
+		ImageIcon forceimg = new ImageIcon("img/force.png");
+		JLabel forcelb = new JLabel("Force:");
+		forcelb.setIcon(forceimg);
 		poolOptions.add(forcelb);
 		JComboBox<Integer> forceqt = new JComboBox<>(diceqt);
 		poolOptions.add(forceqt);

@@ -19,6 +19,14 @@ class RollAction implements ActionListener {
 	JLabel actionDes;
 	JLabel actionLig;
 	JLabel actionDar;
+	ImageIcon successimg;
+	ImageIcon failureimg;
+	ImageIcon advantageimg;
+	ImageIcon threatimg;
+	ImageIcon triumphimg;
+	ImageIcon despairimg;
+	ImageIcon lightimg;
+	ImageIcon darkimg;
 
 
 	RollAction(JPanel screen, JPanel showResults,
@@ -44,11 +52,25 @@ class RollAction implements ActionListener {
 
 	public void actionPerformed(ActionEvent e){
 		actionRes.setText(" ");
+		actionRes.setIcon(null);
 		actionAdv.setText(" ");
+		actionAdv.setIcon(null);
 		actionTri.setText(" ");
+		actionTri.setIcon(null);
 		actionDes.setText(" ");
+		actionDes.setIcon(null);
 		actionLig.setText(" ");
+		actionLig.setIcon(null);
 		actionDar.setText(" ");
+		actionDar.setIcon(null);
+		successimg = new ImageIcon("img/success.png");
+		failureimg = new ImageIcon("img/failure.png");
+		advantageimg = new ImageIcon("img/advantage.png");
+		threatimg = new ImageIcon("img/threat.png");
+		triumphimg = new ImageIcon("img/triumph.png");
+		despairimg = new ImageIcon("img/despair.png");
+		lightimg = new ImageIcon("img/light.png");
+		darkimg = new ImageIcon("img/dark.png");
 
 		Integer boost = (Integer)boostqt.getSelectedItem();
 		Integer setback = (Integer)setbackqt.getSelectedItem();
@@ -63,45 +85,44 @@ class RollAction implements ActionListener {
 		results = pool.roll(boost,setback,ability,difficulty,proficiency,challenge,force);
 
 		if(boost>0 || setback>0 || ability>0 || difficulty>0 || proficiency>0 || challenge>0){
-			if(results[0]>0){			
-				actionRes.setText("SUCCESS +" + String.valueOf(results[0]));
-				//showResults.add(actionRes);
+			if(results[0]>0){	
+				actionRes.setIcon(successimg);		
+				actionRes.setText("SUCCESS [" + String.valueOf(results[0]) + "]");				
 			} else{
-				actionRes.setText("FAILURE +" + String.valueOf(Math.abs(results[0])));
-				//showResults.add(actionRes);
+				actionRes.setIcon(failureimg);
+				actionRes.setText("FAILURE [" + String.valueOf(Math.abs(results[0])) + "]");				
 			}
 		}
 
 		if(results[1]>0){
-			actionAdv.setText("Advantage +" + String.valueOf(results[1]));
-			//showResults.add(actionAdv);
+			actionAdv.setIcon(advantageimg);
+			actionAdv.setText("Advantage [" + String.valueOf(results[1]) + "]");			
 		} else if (results[1]<0) {
-			actionAdv.setText("Threat +" + String.valueOf(Math.abs(results[1])));
-			//showResults.add(actionAdv);
+			actionAdv.setIcon(threatimg);
+			actionAdv.setText("Threat [" + String.valueOf(Math.abs(results[1])) + "]");			
 		}
 
 		if(results[2]>0){
-			actionTri.setText("TRIUMPH +" + String.valueOf(results[2]));
-			//showResults.add(actionTri);
+			actionTri.setIcon(triumphimg);
+			actionTri.setText("TRIUMPH [" + String.valueOf(results[2]) + "]");			
 		}
 
 		if(results[3]>0){
-			actionDes.setText("DESPAIR +" + String.valueOf(results[3]));
-			//showResults.add(actionDes);
+			actionDes.setIcon(despairimg);
+			actionDes.setText("DESPAIR [" + String.valueOf(results[3]) + "]");			
 		}
 
 		if(results[4]>0){
-			actionLig.setText("Light-Side Force +" + String.valueOf(results[4]));
-			//showResults.add(actionLig);
+			actionLig.setIcon(lightimg);
+			actionLig.setText("Light-Side Force [" + String.valueOf(results[4]) + "]");			
 		}
 
 		if(results[5]>0){
-			actionDar.setText("Dark-Side Force +" + String.valueOf(results[5]));
-			//showResults.add(actionDar);
+			actionDar.setIcon(darkimg);
+			actionDar.setText("Dark-Side Force [" + String.valueOf(results[5]) + "]");			
 		}
 
 		screen.add(showResults,BorderLayout.CENTER);
-		//showResults.repaint();
 		screen.repaint();
 	}
 }
