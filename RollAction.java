@@ -12,6 +12,7 @@ class RollAction implements ActionListener {
 	JComboBox<Integer> proficiencyqt;
 	JComboBox<Integer> challengeqt;
 	JComboBox<Integer> forceqt;
+	JComboBox<Integer> d10qt;
 	JPanel showResults;
 	JLabel actionRes;
 	JLabel actionAdv;
@@ -19,6 +20,7 @@ class RollAction implements ActionListener {
 	JLabel actionDes;
 	JLabel actionLig;
 	JLabel actionDar;
+	JLabel actiond10;
 	ImageIcon successimg;
 	ImageIcon failureimg;
 	ImageIcon advantageimg;
@@ -30,9 +32,9 @@ class RollAction implements ActionListener {
 
 
 	RollAction(JPanel screen, JPanel showResults,
-				JLabel actionRes, JLabel actionAdv, JLabel actionTri, JLabel actionDes, JLabel actionLig, JLabel actionDar,
+				JLabel actionRes, JLabel actionAdv, JLabel actionTri, JLabel actionDes, JLabel actionLig, JLabel actionDar, JLabel actiond10,
 				JComboBox<Integer> boostqt, JComboBox<Integer> setbackqt, JComboBox<Integer> abilityqt,
-				JComboBox<Integer> difficultyqt, JComboBox<Integer> proficiencyqt, JComboBox<Integer> challengeqt, JComboBox<Integer> forceqt){
+				JComboBox<Integer> difficultyqt, JComboBox<Integer> proficiencyqt, JComboBox<Integer> challengeqt, JComboBox<Integer> forceqt, JComboBox<Integer> d10qt){
 		this.screen = screen;
 		this.showResults = showResults;
 		this.actionRes = actionRes;
@@ -41,6 +43,7 @@ class RollAction implements ActionListener {
 		this.actionDes = actionDes;
 		this.actionLig = actionLig;
 		this.actionDar = actionDar;
+		this.actiond10 = actiond10;
 		this.boostqt = boostqt;
 		this.setbackqt = setbackqt;
 		this.abilityqt = abilityqt;
@@ -48,6 +51,7 @@ class RollAction implements ActionListener {
 		this.proficiencyqt = proficiencyqt;
 		this.challengeqt = challengeqt;
 		this.forceqt = forceqt;
+		this.d10qt = d10qt;
 	}
 
 	public void actionPerformed(ActionEvent e){
@@ -63,6 +67,7 @@ class RollAction implements ActionListener {
 		actionLig.setIcon(null);
 		actionDar.setText(" ");
 		actionDar.setIcon(null);
+		actiond10.setText(" ");
 		successimg = new ImageIcon("img/success.png");
 		failureimg = new ImageIcon("img/failure.png");
 		advantageimg = new ImageIcon("img/advantage.png");
@@ -79,10 +84,11 @@ class RollAction implements ActionListener {
 		Integer proficiency = (Integer)proficiencyqt.getSelectedItem();
 		Integer challenge = (Integer)challengeqt.getSelectedItem();
 		Integer force = (Integer)forceqt.getSelectedItem();
+		Integer d10 = (Integer)d10qt.getSelectedItem();
 
 		EdgeDiceRoll pool = new EdgeDiceRoll();
-		int[] results = new int[6]; 
-		results = pool.roll(boost,setback,ability,difficulty,proficiency,challenge,force);
+		int[] results = new int[7]; 
+		results = pool.roll(boost,setback,ability,difficulty,proficiency,challenge,force,d10);
 
 		if(boost>0 || setback>0 || ability>0 || difficulty>0 || proficiency>0 || challenge>0){
 			if(results[0]>0){	
@@ -120,6 +126,12 @@ class RollAction implements ActionListener {
 		if(results[5]>0){
 			actionDar.setIcon(darkimg);
 			actionDar.setText("Dark-Side Force [" + String.valueOf(results[5]) + "]");			
+		}
+
+		if(d10==1){
+			actiond10.setText("d10 [" + String.valueOf(results[6]) + "]");
+		} else if (d10==2) {
+			actiond10.setText("Percentage [" + String.valueOf(results[6]) + "%]");
 		}
 
 		screen.add(showResults,BorderLayout.CENTER);

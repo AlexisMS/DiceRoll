@@ -7,6 +7,7 @@ class EdgeDiceRoll {
 	Dice proficiency = new Dice(12);
 	Dice challenge = new Dice(12);
 	Dice force = new Dice(12);
+	Dice d10 = new Dice(10);
 	int success = 0;
 	int failure = 0;
 	int advantage = 0;
@@ -15,11 +16,12 @@ class EdgeDiceRoll {
 	int despair = 0;
 	int light = 0;
 	int dark = 0;
+	int d10res = 0;
 
 	EdgeDiceRoll(){}
 
 
-	int[] roll(int dboost, int dsetback, int dability, int ddifficulty, int dproficiency, int dchallenge, int dforce){
+	int[] roll(int dboost, int dsetback, int dability, int ddifficulty, int dproficiency, int dchallenge, int dforce, int dd10){
  		success = 0;
  		failure = 0;
  		advantage = 0;
@@ -28,6 +30,7 @@ class EdgeDiceRoll {
  		despair = 0;
  		light = 0;
  		dark = 0;
+ 		d10res = 0;
  		if(dboost>0){
  			for(int i=1; i<dboost+1; i++){
  				this.rollBoost();
@@ -64,13 +67,28 @@ class EdgeDiceRoll {
  				this.rollForce();
  			}
  		}
- 		int[] result = new int[6];
+ 		if(dd10==1){
+ 			d10res = d10.roll();
+ 		} else if (dd10==2) {
+ 			//d10res = (d10.roll()*10) + d10.roll();
+ 			d10res = d10.roll();
+ 			if(d10res==10){
+ 				int temp = d10.roll();
+ 				if(temp==10)
+ 					d10res=100;
+ 				else
+ 					d10res=temp;
+ 			} else
+ 				d10res = (d10res*10) + d10.roll();
+ 		}
+ 		int[] result = new int[7];
  		result[0] = success-failure;
  		result[1] = advantage-threat;
  		result[2] = triumph;
  		result[3] = despair;
  		result[4] = light;
  		result[5] = dark;
+ 		result[6] = d10res;
  		return result;
 	}
 
