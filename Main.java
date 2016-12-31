@@ -13,7 +13,7 @@ class Main {
 		f.setContentPane(screen);
 		screenConfig(screen);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    f.setSize(500,260); //lar x alt
+	    f.setSize(500,300); //lar x alt
 	    f.setTitle("Star Wars RPG Dice Roller");
 	    ImageIcon img = new ImageIcon("img/ds.png");
 	    f.setIconImage(img.getImage());
@@ -57,6 +57,8 @@ class Main {
 		poolOptions.add(poolOptions1,BorderLayout.PAGE_START);
 		JPanel poolOptions2 = new JPanel();
 		poolOptions.add(poolOptions2,BorderLayout.CENTER);
+		JPanel poolOptions3 = new JPanel();
+		poolOptions.add(poolOptions3,BorderLayout.PAGE_END);
 		
 
 		Integer[] diceopt = new Integer[] {0,1,2,3,4,5,6,7,8,9};
@@ -116,12 +118,18 @@ class Main {
 		JComboBox<Integer> d10qt = new JComboBox<>(d10opt);
 		poolOptions2.add(d10qt);
 
+		JButton reset = new JButton("Reset");
+		reset.setActionCommand("RESET");
+		reset.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
+													difficultyqt, proficiencyqt,
+													challengeqt, forceqt, d10qt));
+		poolOptions3.add(reset);
 
 
 		JButton roll = new JButton("ROLL");
 		roll.addActionListener(new RollAction(screen, showResults, actionRes, actionAdv, actionTri, actionDes, actionLig, actionDar, actiond10,
 											 boostqt, setbackqt, abilityqt, difficultyqt, proficiencyqt, challengeqt, forceqt, d10qt));
-		poolOptions.add(roll,BorderLayout.PAGE_END);
+		poolOptions3.add(roll);
 
 		screen.add(poolOptions,BorderLayout.PAGE_START);
 	}
