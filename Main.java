@@ -13,7 +13,7 @@ class Main {
 		f.setContentPane(screen);
 		screenConfig(screen);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    f.setSize(500,300); //lar x alt
+	    f.setSize(500,305); //lar x alt
 	    f.setTitle("Star Wars RPG Dice Roller");
 	    ImageIcon img = new ImageIcon("img/ds.png");
 	    f.setIconImage(img.getImage());
@@ -137,7 +137,7 @@ class Main {
 													challengeqt, forceqt, d10qt));
 		poolOptions32.add(upability);
 
-		JButton downproficiency = new JButton("Down.Profic.");
+		JButton downproficiency = new JButton("Down.Proficiency");
 		downproficiency.setActionCommand("DOWN_PROFICIENCY");
 		downproficiency.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
 													difficultyqt, proficiencyqt,
@@ -151,7 +151,7 @@ class Main {
 													challengeqt, forceqt, d10qt));
 		poolOptions32.add(updifficulty);
 
-		JButton downchallenge = new JButton("Down.Challe.");
+		JButton downchallenge = new JButton("Down.Challenge");
 		downchallenge.setActionCommand("DOWN_CHALLENGE");
 		downchallenge.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
 													difficultyqt, proficiencyqt,
