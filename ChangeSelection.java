@@ -33,7 +33,10 @@ class ChangeSelection implements ActionListener {
 
 /*	enum Actions{
 		RESET,
-		UP_ABILITY
+		UP_ABILITY,
+		DOWN_PROFICIENCY,
+		UP_DIFFICULTY,
+		DOWN_CHALLENGE
 	}*/
 
 	public void actionPerformed(ActionEvent e){
@@ -47,6 +50,38 @@ class ChangeSelection implements ActionListener {
 			forceqt.setSelectedIndex(0);
 			d10qt.setSelectedIndex(0);
 
+		}
+
+		if(e.getActionCommand()=="UP_ABILITY"){
+			if(abilityqt.getSelectedIndex()>0){
+				abilityqt.setSelectedIndex(abilityqt.getSelectedIndex()-1);
+				proficiencyqt.setSelectedIndex(proficiencyqt.getSelectedIndex()+1);
+			} else if (abilityqt.getSelectedIndex()==0) {
+				abilityqt.setSelectedIndex(abilityqt.getSelectedIndex()+1);
+			}
+		}
+
+		if(e.getActionCommand()=="UP_DIFFICULTY"){
+			if(difficultyqt.getSelectedIndex()>0){
+				difficultyqt.setSelectedIndex(difficultyqt.getSelectedIndex()-1);
+				challengeqt.setSelectedIndex(challengeqt.getSelectedIndex()+1);
+			} else if (difficultyqt.getSelectedIndex()==0) {
+				difficultyqt.setSelectedIndex(difficultyqt.getSelectedIndex()+1);
+			}
+		}
+
+		if(e.getActionCommand()=="DOWN_PROFICIENCY"){
+			if(proficiencyqt.getSelectedIndex()>0){
+				proficiencyqt.setSelectedIndex(proficiencyqt.getSelectedIndex()-1);
+				abilityqt.setSelectedIndex(abilityqt.getSelectedIndex()+1);
+			}
+		}
+
+		if(e.getActionCommand()=="DOWN_CHALLENGE"){
+			if(challengeqt.getSelectedIndex()>0){
+				challengeqt.setSelectedIndex(challengeqt.getSelectedIndex()-1);
+				difficultyqt.setSelectedIndex(difficultyqt.getSelectedIndex()+1);
+			}
 		}
 	}
 

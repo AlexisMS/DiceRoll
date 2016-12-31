@@ -58,7 +58,12 @@ class Main {
 		JPanel poolOptions2 = new JPanel();
 		poolOptions.add(poolOptions2,BorderLayout.CENTER);
 		JPanel poolOptions3 = new JPanel();
+		poolOptions3.setLayout(new BorderLayout(5,5));
 		poolOptions.add(poolOptions3,BorderLayout.PAGE_END);
+		JPanel poolOptions31 = new JPanel();
+		poolOptions3.add(poolOptions31,BorderLayout.PAGE_START);
+		JPanel poolOptions32 = new JPanel();
+		poolOptions3.add(poolOptions32,BorderLayout.CENTER);
 		
 
 		Integer[] diceopt = new Integer[] {0,1,2,3,4,5,6,7,8,9};
@@ -123,13 +128,41 @@ class Main {
 		reset.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
 													difficultyqt, proficiencyqt,
 													challengeqt, forceqt, d10qt));
-		poolOptions3.add(reset);
+		poolOptions31.add(reset);
+
+		JButton upability = new JButton("Up.Ability");
+		upability.setActionCommand("UP_ABILITY");
+		upability.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
+													difficultyqt, proficiencyqt,
+													challengeqt, forceqt, d10qt));
+		poolOptions32.add(upability);
+
+		JButton downproficiency = new JButton("Down.Profic.");
+		downproficiency.setActionCommand("DOWN_PROFICIENCY");
+		downproficiency.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
+													difficultyqt, proficiencyqt,
+													challengeqt, forceqt, d10qt));
+		poolOptions32.add(downproficiency);
+
+		JButton updifficulty = new JButton("Up.Difficulty");
+		updifficulty.setActionCommand("UP_DIFFICULTY");
+		updifficulty.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
+													difficultyqt, proficiencyqt,
+													challengeqt, forceqt, d10qt));
+		poolOptions32.add(updifficulty);
+
+		JButton downchallenge = new JButton("Down.Challe.");
+		downchallenge.setActionCommand("DOWN_CHALLENGE");
+		downchallenge.addActionListener(new ChangeSelection(screen, boostqt, setbackqt, abilityqt,
+													difficultyqt, proficiencyqt,
+													challengeqt, forceqt, d10qt));
+		poolOptions32.add(downchallenge);
 
 
 		JButton roll = new JButton("ROLL");
 		roll.addActionListener(new RollAction(screen, showResults, actionRes, actionAdv, actionTri, actionDes, actionLig, actionDar, actiond10,
 											 boostqt, setbackqt, abilityqt, difficultyqt, proficiencyqt, challengeqt, forceqt, d10qt));
-		poolOptions3.add(roll);
+		poolOptions31.add(roll);
 
 		screen.add(poolOptions,BorderLayout.PAGE_START);
 	}
